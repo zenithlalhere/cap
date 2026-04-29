@@ -1,0 +1,23 @@
+g[z_] := (Pi * Cot[Pi * z]) / z^2;
+
+Print["The given function is g(z) = ", g[z]];
+Print["The zeros of the function g are ", Simplify[Reduce[g[z] == 0, z]]];
+Print["g'[1/2 + k] = ", Table[g'[1/2 + k], {k, -1, 1}]];
+Print["The function g has a simple zero at z=1/2"];
+
+Simplify[Reduce[z^2 * Sin[Pi * z] == 0, z]];
+
+Print["The minimum power of ", z - 1, 
+ " in the Laurent Series expansion of the function g about the point ", 1, 
+ " is ", Exponent[Series[g[z], {z, 1, 5}], z - 1, Min]];
+
+Print["The minimum power of ", z, 
+ " in the Laurent Series expansion of the function g about the point ", 0, 
+ " is ", Exponent[Series[g[z], {z, 0, 5}], z, Min]];
+
+Print["The function g has a pole of order 3 at 0 and residue of g at z=0 is ", Residue[g[z], {z, 0}]]
+
+Simplify[Reduce[z^2 * Sin[Pi * z] == 0, z]]
+Print["The minimum power of ", z - 2, 
+ " in the Laurent Series expansion of the function g about the point ", 2, 
+ " is ", Exponent[Series[g[z], {z, 2, 5}], z - 2, Min]]
