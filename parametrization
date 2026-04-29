@@ -1,0 +1,27 @@
+w1 = -1 + I;
+w2 = -1;
+w3 = 1 + I;
+w4 = 3 - I;
+
+
+z1[t_] := (1 - t) w1 + t w2;
+z2[t_] := (1 - t) w2 + t w3;
+z3[t_] := (1 - t) w3 + t w4;
+
+Print["The parametrizations of C1, C2 and C3 are given by"];
+Print["C1: z1(t)=", z1[t], ", 0<=t<=1"];
+Print["C2: z2(t)=", z2[t], ", 0<=t<=1"];
+Print["C3: z3(t)=", z3[t], ", 0<=t<=1"];
+
+Print["The plot of the polygonal path C is given by the figure"];
+
+ParametricPlot[
+ {
+  {Re[z1[t]], Im[z1[t]]}, 
+  {Re[z2[t]], Im[z2[t]]}, 
+  {Re[z3[t]], Im[z3[t]]}
+ }, 
+ {t, 0, 1}, 
+ PlotStyle -> {Red, Blue, Green}, 
+ AxesLabel -> {x, y}
+]
