@@ -1,0 +1,16 @@
+w1 = 0;
+w2 = 2 + I * Pi / 4;
+z[t_] := (1 - t) * w1 + t * w2;
+
+Print["The parametrization of L is given by"];
+Print["L: z(t)=", z[t], ", 0<=t<=1"];
+
+Print["The plot of the segment L is given by the figure"];
+ParametricPlot[
+ {Re[z[t]], Im[z[t]]}, 
+ {t, 0, 1}, 
+ PlotStyle -> {Thick, Red}, 
+ AxesLabel -> {x, y}
+]
+f[z_] := Exp[z];
+Print["Integral of e^z dz = ", ComplexExpand[Integrate[f[z[t]] * z'[t], {t, 0, 1}]]]
