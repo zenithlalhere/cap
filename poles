@@ -1,0 +1,16 @@
+f[z_] := 1 / (5 * z^4 + 26 * z^2 + 5);
+
+Print["The given function is f(z)= ", f[z]];
+
+roots = z /. Solve[5 * z^4 + 26 * z^2 + 5 == 0, z];
+Print["The roots of the denominator 5z^4+26z^2+5=0 are ", roots];
+Table[
+  Print[
+    "The minimum power of ", z - roots[[i]], 
+    " in the Laurent Series expansion of the function f about the point ", roots[[i]], 
+    " is ", Exponent[Series[f[z], {z, roots[[i]], 5}], z - roots[[i]], Min]
+  ], 
+  {i, 1, 4}
+];
+
+Print["The function f has simple poles at ", roots]
