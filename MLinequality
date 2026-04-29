@@ -1,0 +1,37 @@
+
+w1 = 2;
+w2 = 2 + I;
+z[t_] := (1 - t) * w1 + t * w2;
+
+(* Calculate length L *)
+L = Integrate[Abs[z'[t]], {t, 0, 1}];
+
+Print["The parametrization of the line segment C is given by"];
+Print["C: z(t)=", z[t], ", 0<=t<=1"];
+Print["The length of the contour C is given by Integral |z'(t)|dt = ", L];
+
+f[z_] := 1 / (z^2 + 1);
+
+Print["Let us write f(z) as 1/((z+i)(z-i)) and compute the maximum of the absolute values of 1/(z-i) and 1/(z+i) on the contour C"];
+
+(* Compute maxima *)
+M1 = MaxValue[{ComplexExpand[Abs[ComplexExpand[1/(z[t] - I)]]], 0 <= t <= 1}, t];
+M2 = MaxValue[{ComplexExpand[Abs[ComplexExpand[1/(z[t] + I)]]], 0 <= t <= 1}, t];
+M = M1 * M2;
+
+Print["The maximum of the absolute value of 1/(z-i) on C is ", M1];
+Print["The maximum of the absolute value of 1/(z+i) on C is ", M2];
+Print["|f(z)| <= ", M];
+Print["Using ML-Inequality we get |Integral f(z)dz| <= ", M * L];
+
+Manipulate[
+ Show[
+  ParametricPlot[{Re[z[t]], Im[z[t]]}, {t, 0, 1}, 
+   PlotStyle -> {Thick, Red}, PlotRange -> 2], 
+  ListLinePlot[{
+    {{0, 1}, {Re[z[t]], Im[z[t]]}}, 
+    {{0, -1}, {Re[z[t]], Im[z[t]]}}
+   }, AxesOrigin -> {0, 0}]
+ ], 
+ {t, 0, 1}
+]
