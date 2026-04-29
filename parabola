@@ -1,0 +1,21 @@
+w1 = -1 - I;
+w2 = 3 + I;
+
+z1[t_] := (1 - t) * w1 + t * w2;
+z2[t_] := (t^2 + 2 * t) + I * t;
+
+Print["The parametrizations of C1, C2 and C3 are given by"];
+Print["C1: z(t)=", z1[t], ", 0<=t<=1"];
+Print["C2: z(t)=", z2[t], ", -1<=t<=1"];
+
+Print["The plots of the line segment C1 and portion of the parabola C2 are given by the figure"];
+
+Show[
+  ParametricPlot[{Re[z1[t]], Im[z1[t]]}, {t, 0, 1}, 
+    PlotStyle -> {Thick, Red}],
+  ParametricPlot[{Re[z2[t]], Im[z2[t]]}, {t, -1, 1}, 
+    PlotStyle -> {Thick, Green}]
+]
+f[z_] := z;
+Print["Integral of z dz over C1 = ", Integrate[f[z1[t]] * z1'[t], {t, 0, 1}]];
+Print["Integral of z dz over C2 = ", Integrate[f[z2[t]] * z2'[t], {t, -1, 1}]]
