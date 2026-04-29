@@ -1,0 +1,14 @@
+z[t_] := 2 + Exp[I * t];
+
+Print["The parametrization of the semi-circle C is given by"];
+Print["C: z(t)=", z[t], ", 0<=t<=Pi"];
+
+Print["The plot of the semi-circle C is given by the figure"];
+ParametricPlot[
+  {Re[z[t]], Im[z[t]]}, 
+  {t, 0, Pi}, 
+  PlotStyle -> {Thick, Red}, 
+  AxesLabel -> {x, y}
+]
+f[z_] := 1 / (z - 2);
+Print["Integral of 1/(z-2) dz = ", ComplexExpand[Integrate[f[z[t]] * z'[t], {t, 0, Pi}]]]
