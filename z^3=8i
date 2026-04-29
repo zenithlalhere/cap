@@ -1,0 +1,11 @@
+u = z /. ComplexExpand[Solve[z^3 == 8 * I, z]];
+Print["The roots of the given equation are:"];
+Column[u]
+Print["The roots lie on the circle |z|=2 and are represented as:"];
+a = ListPlot[Table[{Re[u[[i]]], Im[u[[i]]]}, {i, 1, 3}], 
+   AspectRatio -> Automatic, 
+   PlotStyle -> {Red, PointSize[0.04]}];
+b = Graphics[Table[{Thick, Magenta, Arrow[{{0, 0}, {Re[u[[i]]], Im[u[[i]]]}}]}, {i, 1, 3}]];
+c = ParametricPlot[{2 * Cos[t], 2 * Sin[t]}, {t, 0, 2 * Pi}, 
+   PlotStyle -> {Thick, Blue}];
+Show[a, b, c]
