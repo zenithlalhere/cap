@@ -1,0 +1,21 @@
+f[z_] := 3 / (2 + z - z^2);
+
+Print["The given function is f(z) = ", f[z]];
+Print["The roots of the denominator 2+z-z^2==0 are ", z /. Solve[2 + z - z^2 == 0, z]];
+
+Print["The Taylor series expansion of the function f is valid in the disk |z|<1 and Laurent series expansion of the function f is valid in the annulus 1<|z|<2 and |z|>2. These three domains are illustrated in the following figure:"];
+
+Show[
+  ParametricPlot[{r * Cos[t], r * Sin[t]}, {r, 0, 1}, {t, 0, 2*Pi}, PlotStyle -> Red, Mesh -> None], 
+  ParametricPlot[{r * Cos[t], r * Sin[t]}, {r, 1, 2}, {t, 0, 2*Pi}, PlotStyle -> Yellow, Mesh -> None], 
+  ParametricPlot[{r * Cos[t], r * Sin[t]}, {r, 2, 6}, {t, 0, 2*Pi}, PlotStyle -> Blue, Mesh -> None], 
+  PlotRange -> 4
+]
+
+Print["The Taylor series expansion of the function f in the disk |z|<1 is given by f(z) = ", Series[f[z], {z, 0, 10}]];
+Print["The partial fraction gives f(z)= ", Apart[f[z]]];
+
+Print["The Laurent series expansion of the function f in the annulus 1<|z|<2 is given by f(z) = ", 
+  Series[1/(2 - z), {z, 0, 10}] + Series[1/(1 + z), {z, Infinity, 10}]];
+
+Print["The Laurent series expansion of the function f in the annulus |z|>2 is given by f(z) = ", Series[f[z], {z, Infinity, 10}]];
