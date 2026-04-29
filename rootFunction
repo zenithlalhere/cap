@@ -1,0 +1,19 @@
+
+w1 = 4;
+w2 = 8 + 6 * I;
+
+z[t_] := (1 - t) * w1 + t * w2;
+
+Print["The parametrization of the line segment C is given by"];
+Print["C1: z(t)=", z[t], ", 0<=t<=1"];
+
+Print["The plot of the line segment C is given by the figure"];
+ParametricPlot[
+  {Re[z[t]], Im[z[t]]}, 
+  {t, 0, 1}, 
+  PlotStyle -> {Thick, Red}, 
+  AxesOrigin -> {0, 0}
+]
+
+f[z_] := 1 / (2 * Sqrt[z]);
+Print["Integral of 1/(2*Sqrt[z]) dz = ", Integrate[f[z[t]] * z'[t], {t, 0, 1}]]
