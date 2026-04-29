@@ -1,0 +1,12 @@
+Print["The open disk |z+1+i|<1 is given by the figure"];
+RegionPlot[Abs[x + I*y + 1 + I] < 1, {x, -10, 10}, {y, -10, 10},
+ BoundaryStyle -> Dashed, PlotRange -> 5, Axes -> True]
+
+f[z_] := (3 - 4*I)*z + 6 + 2*I;
+w = u + I*v;
+root = z /. ComplexExpand[Solve[f[z] == w, z]];
+Print["The image of the open disk |z+1+i|<1 under the function f(z)= ", f[z],
+ " is ", Simplify[Refine[Abs[root[[1]] + 1 + I] < 1, Element[{u, v}, Reals]]],
+ " and is given by figure"];
+RegionPlot[Abs[root[[1]] + 1 + I] < 1, {u, -10, 10}, {v, -10, 10},
+ PlotStyle -> Magenta, BoundaryStyle -> Dashed, PlotRange -> 10, Axes -> True]
